@@ -20,3 +20,13 @@ Gemfile.lock
 # macOS metadata files
 .DS_Store
 **/.DS_Store
+
+# Next.js
+.next/
+out/
+node_modules/
+npm-debug.log*
+.env
+.env.local
+.env*.local
+next-env.d.ts
