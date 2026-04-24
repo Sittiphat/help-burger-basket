@@ -3,56 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Support Burger Basket Family – Monrovia Burglary</title>
+  <title>Help Burger Basket — Justice for Pan &amp; Watt</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body { font-family: system-ui, sans-serif; }
-    .update-card {
-      transition: all 0.2s ease;
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+    /* Hero gradient */
+    .hero-bg {
+      background: radial-gradient(ellipse at 50% -10%, #7f1d1d 0%, #0f172a 60%);
     }
-    .update-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+    /* Sticky nav */
+    #main-nav { transition: box-shadow 0.2s; }
+    #main-nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+
+    /* Section label */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #dc2626;
     }
+
+    /* Stats strip */
+    .stat-block { border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat-block:last-child { border-right: none; }
+
+    /* Photo cards */
+    .photo-card { overflow: hidden; }
+    .photo-card img { transition: transform 0.5s ease; }
+    .photo-card:hover img { transform: scale(1.05); }
+
+    /* Evidence card header */
+    .video-header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    }
+
+    /* Observation cards */
+    .obs-card { border-left: 3px solid #dc2626; }
+
+    /* Timeline */
+    .timeline-item { position: relative; padding-left: 2rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1.5rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 50%;
+      background: #dc2626;
+      box-shadow: 0 0 0 3px #fee2e2;
+    }
+    .timeline-track {
+      position: absolute;
+      left: 0.28rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #fecaca, #fca5a5);
+    }
+
+    /* Donate pulse */
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+    }
+    .donate-pulse { animation: pulse-green 2.5s infinite; }
+
+    /* ── Scroll animations ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.65s ease;
+    }
+    .fade-up.visible, .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+    .delay-4 { transition-delay: 0.32s; }
+    .delay-5 { transition-delay: 0.40s; }
+    .delay-6 { transition-delay: 0.48s; }
+    .delay-7 { transition-delay: 0.56s; }
+
+    /* Hero text animation — starts invisible, JS adds visible on load */
+    .hero-text {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .hero-text.visible { opacity: 1; transform: translateY(0); }
+    .hero-stat {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .hero-stat.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-slate-50 text-slate-900">
+
+  <!-- STICKY NAV -->
+  <nav id="main-nav" class="sticky top-0 z-50 bg-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-14">
+      <a href="#top" class="font-bold text-red-400 text-sm tracking-wide flex items-center gap-2">
+        <i class="fa-solid fa-circle-exclamation"></i> Burger Basket
+      </a>
+      <div class="hidden md:flex items-center gap-5 text-xs font-medium text-slate-300">
+        <a href="#story" class="hover:text-white transition-colors">Story</a>
+        <a href="#evidence" class="hover:text-white transition-colors">Evidence</a>
+        <a href="#photos" class="hover:text-white transition-colors">Photos</a>
+        <a href="#coverage" class="hover:text-white transition-colors">Coverage</a>
+        <a href="#observations" class="hover:text-white transition-colors">Observations</a>
+        <a href="#updates" class="hover:text-white transition-colors">Updates</a>
+        <a href="#help" class="hover:text-white transition-colors">Help</a>
+      </div>
+      <a href="https://gofund.me/da3c6b3db" target="_blank" rel="noopener"
+         class="donate-pulse bg-green-600 hover:bg-green-500 text-white text-xs font-bold px-5 py-2 rounded-full transition-colors">
+        Donate
+      </a>
+    </div>
+  </nav>
 
   <!-- HERO -->
-  <header class="bg-red-700 text-white py-16 text-center px-6">
-    <h1 class="text-5xl font-bold">Justice &amp; Support for Burger Basket</h1>
-    <p class="mt-4 text-xl max-w-2xl mx-auto">Pan and Watt, owners of Burger Basket, were burglarized in Monrovia on March 26, 2026. Help us find the perpetrators and support their recovery.</p>
-    <a href="https://gofund.me/da3c6b3db"
-       class="mt-8 inline-block bg-green-600 text-white font-bold px-10 py-4 rounded-full text-xl hover:bg-green-500 transition-colors">
-      Donate Now on GoFundMe
-    </a>
+  <header id="top" class="hero-bg text-white overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6 pt-20 pb-0 text-center">
+      <p class="hero-text section-label text-red-400 mb-5" style="transition-delay:0.1s">Monrovia, California &nbsp;·&nbsp; March 26, 2026</p>
+      <h1 class="hero-text serif text-6xl md:text-7xl leading-tight mb-6" style="transition-delay:0.25s">
+        Help Bring Them<br><em>to Justice</em>
+      </h1>
+      <p class="hero-text text-lg text-slate-300 max-w-xl mx-auto leading-relaxed" style="transition-delay:0.4s">
+        Pan and Watt, owners of Burger Basket, had their life savings stolen in a professional burglary while they were at work. The perpetrators are still at large.
+      </p>
+      <div class="hero-text mt-8 flex flex-col sm:flex-row items-center justify-center gap-4" style="transition-delay:0.55s">
+        <a href="https://gofund.me/da3c6b3db" target="_blank" rel="noopener"
+           class="donate-pulse bg-green-600 hover:bg-green-500 text-white font-bold px-10 py-4 rounded-full text-lg transition-colors w-full sm:w-auto text-center">
+          <i class="fa-solid fa-heart mr-2"></i>Donate on GoFundMe
+        </a>
+        <a href="#evidence"
+           class="border border-white/30 hover:border-white/60 text-white font-semibold px-10 py-4 rounded-full text-lg transition-colors w-full sm:w-auto text-center">
+          <i class="fa-solid fa-video mr-2"></i>View Evidence
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="mt-16 border-t border-white/10 grid grid-cols-2 md:grid-cols-4">
+      <div class="hero-stat stat-block text-center py-8 px-4" style="transition-delay:0.7s">
+        <p class="serif text-4xl text-red-400">$140K</p>
+        <p class="text-xs text-slate-400 mt-2 uppercase tracking-widest">Cash Stolen</p>
+      </div>
+      <div class="hero-stat stat-block text-center py-8 px-4" style="transition-delay:0.8s">
+        <p class="serif text-4xl text-red-400">$20K</p>
+        <p class="text-xs text-slate-400 mt-2 uppercase tracking-widest">Valuables Taken</p>
+      </div>
+      <div class="hero-stat stat-block text-center py-8 px-4" style="transition-delay:0.9s">
+        <p class="serif text-4xl text-red-400">30 yrs</p>
+        <p class="text-xs text-slate-400 mt-2 uppercase tracking-widest">Savings Erased</p>
+      </div>
+      <div class="hero-stat stat-block text-center py-8 px-4" style="transition-delay:1.0s">
+        <p class="serif text-4xl text-red-400">4+</p>
+        <p class="text-xs text-slate-400 mt-2 uppercase tracking-widest">Perpetrators</p>
+      </div>
+    </div>
   </header>
 
   <!-- MISSION -->
-  <section class="bg-red-50 border-b border-red-200 py-10">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-2xl font-bold text-red-800 mb-4">Why This Site Exists</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="flex gap-4 items-start">
-          <i class="fa-solid fa-eye text-red-600 text-xl mt-1 flex-shrink-0"></i>
+  <section class="bg-white border-b border-slate-200 py-12">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="section-label mb-6 fade-in">Why This Site Exists</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex gap-4 items-start fade-up delay-1">
+          <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-eye text-red-600"></i>
+          </div>
           <div>
-            <p class="font-semibold text-gray-900">Community Recognition</p>
-            <p class="text-sm text-gray-600 mt-1">Share footage and photos widely so the public can help identify the perpetrators and bring them to justice.</p>
+            <p class="font-semibold text-slate-900 mb-1">Community Recognition</p>
+            <p class="text-sm text-slate-500 leading-relaxed">Share footage and photos widely so the public can help identify the perpetrators and bring them to justice.</p>
           </div>
         </div>
-        <div class="flex gap-4 items-start">
-          <i class="fa-solid fa-magnifying-glass text-red-600 text-xl mt-1 flex-shrink-0"></i>
+        <div class="flex gap-4 items-start fade-up delay-2">
+          <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-magnifying-glass text-red-600"></i>
+          </div>
           <div>
-            <p class="font-semibold text-gray-900">Find New Clues</p>
-            <p class="text-sm text-gray-600 mt-1">Invite neighbors, former witnesses, and the broader community to watch the footage and report anything they recognize — a face, a car, a voice, a detail.</p>
+            <p class="font-semibold text-slate-900 mb-1">Find New Clues</p>
+            <p class="text-sm text-slate-500 leading-relaxed">Invite the community to watch the footage and report anything they recognize — a face, a car, a voice, a detail.</p>
           </div>
         </div>
-        <div class="flex gap-4 items-start">
-          <i class="fa-solid fa-shield-halved text-red-600 text-xl mt-1 flex-shrink-0"></i>
+        <div class="flex gap-4 items-start fade-up delay-3">
+          <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-shield-halved text-red-600"></i>
+          </div>
           <div>
-            <p class="font-semibold text-gray-900">Protect Future Victims</p>
-            <p class="text-sm text-gray-600 mt-1">This was a coordinated, professional operation. Documenting their methods publicly may help other families recognize and prevent the same tactics being used against them. And when we catch them, they will not be able to hurt another family ever again</p>
+            <p class="font-semibold text-slate-900 mb-1">Protect Future Victims</p>
+            <p class="text-sm text-slate-500 leading-relaxed">Documenting their methods publicly may help other families recognize and prevent the same tactics being used against them. And when we catch them, they will not be able to hurt another family ever again.</p>
           </div>
         </div>
       </div>
@@ -60,228 +220,270 @@
   </section>
 
   <!-- WHAT HAPPENED -->
-  <section class="max-w-4xl mx-auto px-6 py-12">
-    <h2 class="text-3xl font-bold mb-6">What Happened</h2>
-    <div class="space-y-5 text-lg text-gray-800 leading-relaxed">
-<p>
-On March 26, 2026, the owners of <strong>Burger Basket Monrovia</strong>, 
-Pan and Watt, were the victims of a targeted home burglary that resulted in the loss 
-of their entire life savings. Their apartment—just a short walk from the restaurant—was broken into 
-by a group of <strong>3–4 perpetrators and a getaway driver</strong> using a 
-<strong>light gray Nissan Rogue SUV with stolen plates (9FIDO94)</strong>.
-</p>
+  <section id="story" class="bg-slate-50 py-20">
+    <div class="max-w-2xl mx-auto px-6">
+      <p class="section-label mb-4 fade-in">The Full Story</p>
+      <h2 class="serif text-5xl mb-10 text-slate-900 fade-up">What Happened</h2>
+      <div class="space-y-6 text-[1.05rem] text-slate-600 leading-[1.9]">
+        <p class="fade-up">
+          Pan and Watt are Thai immigrant owners of <strong class="text-slate-900 font-semibold">Burger Basket Monrovia</strong>, a beloved mom-and-pop restaurant that has served the community since 1963 — back when a burger and fries cost just $0.65. The couple purchased the restaurant about seven years ago and were finally looking forward to retiring within the next 5 to 7 years.
+        </p>
+        <p class="fade-up">
+          On <strong class="text-slate-900 font-semibold">Thursday, March 26, 2026</strong>, while Pan and Watt were both at work, a group of <strong class="text-slate-900 font-semibold">3–4 perpetrators and a getaway driver</strong> targeted their nearby Monrovia home. The operation had been planned in advance: an older man in a distinctive white hat began scouting the property as early as <strong class="text-slate-900 font-semibold">4:54 PM</strong>, forcefully knocking on the windows and peering through the glass to confirm the house was empty.
+        </p>
+        <p class="fade-up">
+          After over 30 minutes of surveillance, two younger men entered through the <strong class="text-slate-900 font-semibold">small bathroom window</strong> — visibly forced open as shown in the post-incident walkthrough. A getaway driver stayed parked in a <strong class="text-slate-900 font-semibold">light gray Nissan Rogue SUV</strong> (fitted with stolen license plate <strong class="text-slate-900 font-semibold">9FIDO94</strong>) the entire time, eventually repositioning northbound to appear less conspicuous.
+        </p>
+        <p class="fade-up">
+          Inside, the two perpetrators in all-black clothing and face masks ransacked the bedroom and living room simultaneously. They manhandled the family's three dogs — putting Winchester (the smaller black dog) and Lucky (the white dog) in separate rooms while leaving Happy (the German Shepherd) alone. At one point, two masked suspects are visible on camera <strong class="text-slate-900 font-semibold">talking to a mysterious woman on speakerphone</strong> — her voice and role remain unknown. At least one perpetrator wore bright red gloves to avoid leaving fingerprints.
+        </p>
+        <p class="fade-up">
+          The perpetrators located and carried out a lockbox containing approximately <strong class="text-slate-900 font-semibold">$140,000 in cash</strong> — 30 years of life savings set aside for retirement. They also took an estimated <strong class="text-slate-900 font-semibold">$20,000 in valuables and irreplaceable family heirlooms</strong>. From break-in to exit took only about 7–10 minutes.
+        </p>
 
-<p>
-An older man in a white hat first scouted the home by forcefully knocking on the windows. 
-Minutes later, two younger men broke in through a small bathroom window (shown in the walkthrough video). Once inside, they 
-manhandled the family’s three dogs (who thankfully were not seriously hurt) by putting the smaller white dog in one room, the other smaller black dog in another room and went straight 
-to the bedroom, stealing approximately <strong>$20,000 in valuables</strong> and 
-<strong>around $140,000 in life savings</strong>—money earned over decades of hard work in the 
-restaurant industry and Burger Basket.
-</p>
+        <!-- Pull quote -->
+        <blockquote class="fade-up border-l-4 border-red-500 pl-6 my-10 py-1">
+          <p class="serif text-2xl text-slate-800 italic leading-snug">"We don't have much time left already — we're not young anymore. That money was for my retirement. I've been working for 30 years."</p>
+          <p class="text-sm text-slate-400 mt-4 font-medium not-italic tracking-wide">— Pan, co-owner of Burger Basket</p>
+        </blockquote>
 
-<p>
-The emotional toll has been severe. Shortly after the burglary, 
-<strong>Vorawat was hospitalized with a stress‑induced condition</strong>, and the family temporarily 
-closed Burger Basket to recover. Despite this devastation, the Monrovia community has shown 
-overwhelming kindness—visiting the restaurant, offering support, and helping spread the word.
-</p>
-
-<p>
-This website exists to help the community <strong>identify the suspects</strong>, 
-<strong>support the family</strong>, and <strong>share verified information</strong>. 
-Your help truly matters.
-</p>
-
-<h3>How You Can Help</h3>
-<ol class="list-decimal list-inside">
-  <li><strong>Identify the suspects:</strong> Review the photos and video evidence on this site. If you recognize anything, contact the Monrovia Police Department immediately.</li>
-  <li><strong>Support the family:</strong> A GoFundMe has been created to help them rebuild from the loss.</li>
-  <li><strong>Support Burger Basket:</strong> When the restaurant reopens, your patronage directly helps the family recover.</li>
-  <li><strong>Share the story:</strong> The more people who see this, the greater the chance of finding those responsible.</li>
-</ol>
-
-<p>
-Pan and Watt have served Monrovia with warmth and dedication for decades.  
-Thank you for standing with them during this difficult time.
-</p>
-
-    </div>
-  </section>
-
-  <!-- PHOTOS OF PERPETRATORS -->
-  <section class="py-12 bg-gray-100">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2[] class="text-3xl font-bold mb-6">Photos of the Perpetrators &amp; Vehicle</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <div>
-          <img src="assets/images/key_moments/1000005432.jpg" alt="Scout — close-up front view, white hat" class="rounded-xl shadow w-full object-cover">
-          <p class="text-center mt-2 text-sm font-medium">Scout — close-up front view, white hat</p>
-        </div>
-
-        <div>
-          <img src="assets/images/key_moments/1000005437.jpg" alt="Scout — side profile, white hat" class="rounded-xl shadow w-full object-cover">
-          <p class="text-center mt-2 text-sm font-medium">Scout — side profile, white hat</p>
-        </div>
-
-        <div>
-          <img src="assets/images/key_moments/IMG_6209.PNG" alt="Scout peering through house window from outside" class="rounded-xl shadow w-full object-cover">
-          <p class="text-center mt-2 text-sm font-medium">Scout peering through the house window from outside to check if anyone is home</p>
-        </div>
-
-        <div>
-          <img src="assets/images/key_moments/IMG_6223.PNG" alt="Suspect at bathroom door — dark blue logo cap" class="rounded-xl shadow w-full object-cover">
-          <p class="text-center mt-2 text-sm font-medium">Suspect at bathroom door — dark blue cap with visible logo (entered through bathroom window)</p>
-        </div>
-
-        <div>
-          <img src="assets/images/key_moments/IMG_6224.PNG" alt="Two masked suspects inside — on speakerphone with unknown woman" class="rounded-xl shadow w-full object-cover">
-          <p class="text-center mt-2 text-sm font-medium">Two masked suspects inside the home — both in all-black, talking to a mysterious woman on speakerphone</p>
-        </div>
-
-        <div>
-          <img src="assets/images/key_moments/IMG_6231.PNG" alt="Getaway vehicle — light gray Nissan Rogue SUV" class="rounded-xl shadow w-full object-cover">
-          <p class="text-center mt-2 text-sm font-medium">Getaway vehicle — light gray Nissan Rogue SUV (driver waited outside entire time)</p>
-        </div>
-
-        <div>
-          <img src="assets/images/key_moments/IMG_6232.PNG" alt="Close-up of stolen license plate 9FIDO94" class="rounded-xl shadow w-full object-cover">
-          <p class="text-center mt-2 text-sm font-medium">Close-up of stolen license plate: <strong>9FIDO94</strong></p>
-        </div>
-
+        <p class="fade-up">
+          Their son Jesse explains that, like many in the older Asian immigrant community, his parents kept their savings in cash at home — the way they knew how to trust. Shortly after the robbery, <strong class="text-slate-900 font-semibold">Vorawat was hospitalized due to a stress-induced condition</strong>, forcing Burger Basket to close temporarily.
+        </p>
+        <p class="fade-up">
+          When the restaurant briefly reopened, the community response was overwhelming. Customers flooded in just to show support. "So many people came to buy more burgers," Jesse said. "It made my dad cry — and I've never seen my dad cry before. He cried with tears of joy."
+        </p>
+        <p class="fade-up font-semibold text-slate-900">
+          The Monrovia Police Department is actively investigating. If you recognize anyone in the videos or photos below, please contact MPD immediately.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- SECURITY CAMERA EVIDENCE -->
-  <section class="bg-white py-12">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-2">Security Camera Evidence</h2>
-      <p class="text-gray-500 mb-4">All footage is from Ring home security cameras at the property. All evidence shown here is not be the complete record of the case (but more may be added later in periodic updates). However, all evidence has been shared with the Monrovia Police Department and this is still an ongoing investigation. Videos are listed in chronological order based on the Ring camera overlay timestamp.</p>
+  <section id="evidence" class="bg-white py-20">
+    <div class="max-w-2xl mx-auto px-6">
+      <p class="section-label mb-4 fade-in">Ring Home Security Cameras</p>
+      <h2 class="serif text-5xl mb-4 text-slate-900 fade-up">Security Camera Evidence</h2>
+      <p class="text-slate-500 mb-5 leading-relaxed fade-up">All footage is from Ring home security cameras at the property, shared with the Monrovia Police Department. Listed in chronological order by Ring camera overlay timestamp.</p>
 
-      <!-- Spanish Audio Note -->
-      <div class="bg-blue-50 border border-blue-200 p-4 rounded-2xl mb-8 text-sm">
-        <strong class="text-blue-800"><i class="fa-solid fa-language mr-1"></i> Spanish Audio Detected:</strong>
-        <span class="text-blue-900"> Several Ring camera recordings contain Spanish-language audio, likely from the perpetrators. If you can help transcribe what is being said, please share your transcription in the <a href="https://github.com/Sittiphat/help-burger-basket/discussions" target="_blank" rel="noopener" class="underline font-semibold">Community Forum</a> — it may contain critical clues.</span>
+      <div class="bg-blue-50 border border-blue-200 p-4 rounded-2xl mb-12 flex gap-3 fade-up">
+        <i class="fa-solid fa-language text-blue-500 text-lg flex-shrink-0 mt-0.5"></i>
+        <div class="text-sm text-blue-900">
+          <strong>Spanish Audio Detected:</strong> Several Ring recordings contain Spanish-language audio from the perpetrators. If you can help transcribe, please share in the <a href="https://github.com/Sittiphat/help-burger-basket/discussions" target="_blank" rel="noopener" class="underline font-semibold">Community Forum</a> — it may contain critical clues.
+        </div>
       </div>
 
       <!-- Walkthrough -->
-      <div class="mb-10">
-        <h3 class="font-semibold text-xl mb-1">Crime Scene Walkthrough</h3>
-        <p class="text-sm text-gray-500 mb-3">Filmed after the incident — shows the opened bathroom window used as the point of entry to help visualize the difficulty in scouting, planning, and fitting through that bathroom window.</p>
-        <video controls class="w-full rounded-xl bg-black" style="max-height:480px;">
+      <div class="mb-14 fade-up">
+        <div class="video-header rounded-t-2xl px-5 py-3 flex items-center gap-3">
+          <i class="fa-solid fa-person-walking text-slate-400 text-sm"></i>
+          <span class="text-white font-semibold text-sm tracking-wider uppercase">Crime Scene Walkthrough</span>
+        </div>
+        <video controls class="w-full bg-black" style="display:block;">
           <source src="assets/videos/walkthrough/IMG_8174.MOV" type="video/quicktime">
           <source src="assets/videos/walkthrough/IMG_8174.MOV" type="video/mp4">
-          Your browser does not support video playback.
         </video>
+        <div class="border border-t-0 border-slate-200 rounded-b-2xl px-5 py-4 bg-slate-50">
+          <p class="text-sm text-slate-500 leading-relaxed">Filmed after the incident — shows the opened bathroom window used as the point of entry.</p>
+        </div>
       </div>
 
-      <!-- Ring Recordings — Single Column, Chronological -->
-      <h3 class="font-semibold text-xl mb-6">Ring Camera Recordings</h3>
+      <p class="section-label mb-8 fade-in">Ring Camera Recordings — Chronological Order</p>
       <div class="space-y-6">
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260326_233100.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">4:54 PM — Outside Apartment Walkway Cam</p>
-            <p class="text-sm text-gray-700">The scout in a white hat makes shows himself walking outside and approaches the door to then knock violently. The dogs react by barking.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">4:54 PM</span>
+              <span class="text-slate-400 text-xs">Outside Apartment Walkway Cam</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Scout</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260326_233100.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">The scout in a white hat approaches the bathroom window and violently knocks to check if anyone is home. The dogs inside react, barking loudly.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260326_233118.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">4:55 PM — Outside Apartment Walkway Cam</p>
-            <p class="text-sm text-gray-700">Scout in the white hat now standing upright outside the window — the most clearly visible shot of his face and clothing. He violently knocks on the window to see if anyone is home. The dogs now bark even louder.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">4:55 PM</span>
+              <span class="text-slate-400 text-xs">Outside Apartment Walkway Cam</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Scout</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260326_233118.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">The scout violently knocks on the window again to see if anyone is home — the dogs bark even louder. This is the clearest view of his face and white hat.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260326_233118(1).mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">4:55 PM — Outside Apartment Walkway Cam</p>
-            <p class="text-sm text-gray-700">Scout in the white hat now standing upright outside the window — the most clearly visible shot of his face and clothing. He violently knocks on the window to see if anyone is home. The dogs now bark even louder.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">4:55 PM</span>
+              <span class="text-slate-400 text-xs">Alternate Camera Angle</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Scout</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260326_233118(1).mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">A second Ring camera captures the same moment from a different angle, providing an additional view of the scout's face and the dogs' agitated reaction inside.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_014221.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">4:56 PM — Front Exterior Cam</p>
-            <p class="text-sm text-gray-700">The scout violently knocks on the parking lot window one last time before heading back to notify the getaway driver that the close seems to be clear and that no one seems to be home, just the dogs. He peers into the window one last time, so this supplies another angle to his face.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">4:56 PM</span>
+              <span class="text-slate-400 text-xs">Front Exterior Cam</span>
+            </div>
+            <span class="bg-amber-900/60 text-amber-300 text-xs font-semibold px-2 py-0.5 rounded-md">Getaway Car</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_014221.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">After knocking one last time with no answer, the scout heads back to notify the getaway driver. A second angle captures his face more clearly as he walks away.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_013048.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:13 PM — Outside Apartment Walkway Cam</p>
-            <p class="text-sm text-gray-700">The camera picks up a new person walking by. This could possibly just be a harmless neighbor.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:13 PM</span>
+              <span class="text-slate-400 text-xs">Outside Apartment Walkway Cam</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Scout</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_013048.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">The scout is still lingering near the property nearly 20 minutes later — at this point he could possibly just be a harmless neighbor, with no indication of his true intent.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_013100.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:15 PM — Outside Apartment Walkway Cam</p>
-            <p class="text-sm text-gray-700">The camera picks up a new person walking by. This could possibly just be a harmless neighbor.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:15 PM</span>
+              <span class="text-slate-400 text-xs">Outside Apartment Walkway Cam</span>
+            </div>
+            <span class="bg-blue-900/60 text-blue-300 text-xs font-semibold px-2 py-0.5 rounded-md">Spanish Audio</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_013100.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">Still surveilling — to any passerby, he could possibly just be a harmless neighbor. Spanish audio is clearly audible in this clip.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_014327.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:22 PM — Front Exterior Cam</p>
-            <p class="text-sm text-gray-700">A Nissan Rogue comes backing in to steal the resident's original parking spot still and is now identified as the getaway vehicle, with the stolen license plate <strong>9FIDO94</strong> clearly legible on camera. The vehicle leaves and parks somewhere else northbound to be a lookout and appear less conspicuous</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:22 PM</span>
+              <span class="text-slate-400 text-xs">Front Exterior Cam</span>
+            </div>
+            <span class="bg-amber-900/60 text-amber-300 text-xs font-semibold px-2 py-0.5 rounded-md">Stolen Plate</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_014327.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">The Nissan Rogue backs in to steal the resident's parking spot, then leaves and parks northbound to act as a lookout. Stolen license plate <strong class="text-slate-700">9FIDO94</strong> is clearly legible.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_011303.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:25 PM — Hallway Cam</p>
-            <p class="text-sm text-gray-700">The hallway camera shows the two masked burglars enter inside the house on footage for the first time. Distressed and confused, the dogs bark and the perpetrators use tactics to deescalate the situation by talking sweetly to them and repeatedly opening/closing the door.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:25 PM</span>
+              <span class="text-slate-400 text-xs">Hallway Cam</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Interior</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_011303.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">Two masked burglars enter inside the house for the first time. They immediately use de-escalation tactics with the dogs — speaking softly and moving calmly — to avoid alerting neighbors.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_011312.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:28 PM — Hallway Cam</p>
-            <p class="text-sm text-gray-700">They now make their first move entering trying to again deesclate the situation with the dogs. The hallway camera angle appears obstructed later, moved by the suspect after he notices. The brief obstruction suggests awareness of the camera's presence. Audio is continuted to be heard where the perpetrators are still trying to deescalate the situation.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:28 PM</span>
+              <span class="text-slate-400 text-xs">Hallway Cam</span>
+            </div>
+            <span class="bg-slate-600/60 text-slate-300 text-xs font-semibold px-2 py-0.5 rounded-md">Camera Blocked</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_011312.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">A suspect continues to de-escalate the dogs. Moments later, he notices the Ring camera and deliberately blocks it — confirming awareness of the recording.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_011718.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:30 PM — Living Room Cam</p>
-            <p class="text-sm text-gray-700">A perpetrator wearing navy-colored clothing moves actively through the living room. The other perpetator locks the smaller black dog in the other room that was causing them some trouble and briefly look for valuables in that room. Seemingly empty of valuables, the perpetrators move onto the next room, the master bedroom.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:30 PM</span>
+              <span class="text-slate-400 text-xs">Living Room Cam</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Interior</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_011718.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">A perpetrator locks Winchester, the smaller black dog, in another room to prevent the dogs from barking and drawing attention from neighbors.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260326_203725.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:32 PM — Living Room Cam</p>
-            <p class="text-sm text-gray-700">A perpetrator wearing bright red gloves passes directly in front of the camera. The German Shepherd reacts to the suspect's presence curious, but is left largely unmoved. Other dogs can be heard in the background barking as they are locked in another room now. The red gloves are a deliberate choice to avoid leaving fingerprints. Towards the end of the video we can see the perpetators carry the lockbox away and audio is picked up in Spanish, where another man is maybe heard on speaker phone. If this is the man in the white hat earlier or a totally new person is up for discussion. Lastly, a woman's audio can be heard from the speaker phone. Who she is and what role she played is a mystery for now.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:32 PM</span>
+              <span class="text-slate-400 text-xs">Living Room Cam</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Red Gloves</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260326_203725.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">A perpetrator in bright red gloves carries the lockbox through the living room. Spanish audio is audible — a man is heard on speakerphone, and a woman's voice can be heard in the background.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260326_212055.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:32 PM — Bedroom Cam</p>
-            <p class="text-sm text-gray-700">Simultaneously, a second perpetrator ransacks the bedroom. The white Husky is visible in the corner and distressed. After appearing though there was nothing valuable in the first room, they focus on the master bedroom. Taking a lockbox then the jewelry around and near it. After being unsuccessful in opening the lockbox, they seem to elect to carry it out instead.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:32 PM</span>
+              <span class="text-slate-400 text-xs">Bedroom Cam</span>
+            </div>
+            <span class="bg-red-900/60 text-red-300 text-xs font-semibold px-2 py-0.5 rounded-md">Interior</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260326_212055.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">Simultaneously in the bedroom, Lucky the white Husky is visible as a suspect attempts to open the lockbox. Unable to crack it on-site, he carries it out whole — taking 30 years of savings with him.</p>
           </div>
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <video controls class="w-full bg-black"><source src="assets/videos/evidence/RingVideo_20260327_013646.mp4" type="video/mp4"></video>
-          <div class="px-5 py-4">
-            <p class="text-sm font-bold text-red-700 mb-1">5:33 PM — Front Doorbell Cam</p>
-            <p class="text-sm text-gray-700">A suspect dressed in all-black is seen departing the property through the front. The burglary lasted approximately 40 minutes from first surveillance to exit. But from first breaking, entering, then exiting only took about 7-10 minutes.</p>
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-200 fade-up">
+          <div class="video-header px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-video text-red-400 text-xs"></i>
+              <span class="text-white font-bold text-sm">5:33 PM</span>
+              <span class="text-slate-400 text-xs">Front Doorbell Cam</span>
+            </div>
+            <span class="bg-slate-600/60 text-slate-300 text-xs font-semibold px-2 py-0.5 rounded-md">Departure</span>
+          </div>
+          <video controls class="w-full bg-black" style="display:block;"><source src="assets/videos/evidence/RingVideo_20260327_013646.mp4" type="video/mp4"></video>
+          <div class="px-5 py-4 bg-white">
+            <p class="text-sm text-slate-500 leading-relaxed">Suspects depart through the front door. From first breaking in to exit, the entire burglary took only 7–10 minutes — a level of efficiency that points to a highly experienced crew.</p>
           </div>
         </div>
 
@@ -289,94 +491,177 @@ Thank you for standing with them during this difficult time.
     </div>
   </section>
 
-  <!-- TV AND RADIO COVERAGE -->
-  <section class="bg-white py-12">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-8">TV &amp; Radio Coverage</h2>
+  <!-- PHOTOS -->
+  <section id="photos" class="bg-slate-900 py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="section-label text-red-400 mb-4 fade-in">Stills from Ring Footage</p>
+      <h2 class="serif text-5xl text-white mb-3 fade-up">Photos of the Perpetrators &amp; Vehicle</h2>
+      <p class="text-slate-400 mb-12 fade-up">If you recognize any of these individuals or the vehicle, contact Jesse at <a href="tel:8144069539" class="text-red-400 underline">(814) 406-9539</a> or the Monrovia Police Department.</p>
 
-      <!-- YouTube Embeds -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        <div>
-          <p class="font-semibold text-lg mb-3">CBS Los Angeles</p>
-          <div class="aspect-video bg-black rounded-xl overflow-hidden">
-            <iframe width="100%" height="100%"
-                    src="https://www.youtube.com/embed/Uct1MrlM_0U"
-                    frameborder="0" allowfullscreen></iframe>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <div class="photo-card rounded-2xl overflow-hidden bg-slate-800 shadow-lg fade-up delay-1">
+          <div class="h-60 overflow-hidden">
+            <img src="assets/images/key_moments/1000005432.jpg" alt="Scout — close-up front view, white hat" class="w-full h-full object-cover">
+          </div>
+          <div class="px-4 py-3">
+            <p class="text-xs text-red-400 font-bold uppercase tracking-wider mb-1">Scout</p>
+            <p class="text-sm text-slate-200 font-medium leading-snug">Close-up front view — white hat</p>
           </div>
         </div>
-        <div>
-          <p class="font-semibold text-lg mb-3">NBC Los Angeles</p>
-          <div class="aspect-video bg-black rounded-xl overflow-hidden">
-            <iframe width="100%" height="100%"
-                    src="https://www.youtube.com/embed/ZFjF-NY2sjU"
-                    frameborder="0" allowfullscreen></iframe>
+
+        <div class="photo-card rounded-2xl overflow-hidden bg-slate-800 shadow-lg fade-up delay-2">
+          <div class="h-60 overflow-hidden">
+            <img src="assets/images/key_moments/1000005437.jpg" alt="Scout — side profile, white hat" class="w-full h-full object-cover">
+          </div>
+          <div class="px-4 py-3">
+            <p class="text-xs text-red-400 font-bold uppercase tracking-wider mb-1">Scout</p>
+            <p class="text-sm text-slate-200 font-medium leading-snug">Side profile — white hat</p>
+          </div>
+        </div>
+
+        <div class="photo-card rounded-2xl overflow-hidden bg-slate-800 shadow-lg fade-up delay-3">
+          <div class="h-60 overflow-hidden">
+            <img src="assets/images/key_moments/IMG_6209.PNG" alt="Scout peering through window from outside" class="w-full h-full object-cover">
+          </div>
+          <div class="px-4 py-3">
+            <p class="text-xs text-red-400 font-bold uppercase tracking-wider mb-1">Scout</p>
+            <p class="text-sm text-slate-200 font-medium leading-snug">Peering through house window from outside to check if anyone is home</p>
+          </div>
+        </div>
+
+        <div class="photo-card rounded-2xl overflow-hidden bg-slate-800 shadow-lg fade-up delay-1">
+          <div class="h-60 overflow-hidden">
+            <img src="assets/images/key_moments/IMG_6223.PNG" alt="Suspect at bathroom door — dark blue logo cap" class="w-full h-full object-cover">
+          </div>
+          <div class="px-4 py-3">
+            <p class="text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">Suspect</p>
+            <p class="text-sm text-slate-200 font-medium leading-snug">At bathroom door — dark blue cap with visible logo (entered through bathroom window)</p>
+          </div>
+        </div>
+
+        <div class="photo-card rounded-2xl overflow-hidden bg-slate-800 shadow-lg fade-up delay-2">
+          <div class="h-60 overflow-hidden">
+            <img src="assets/images/key_moments/IMG_6224.PNG" alt="Two masked suspects on speakerphone" class="w-full h-full object-cover">
+          </div>
+          <div class="px-4 py-3">
+            <p class="text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">Two Suspects</p>
+            <p class="text-sm text-slate-200 font-medium leading-snug">Both masked and in all-black — talking to a mysterious woman on speakerphone</p>
+          </div>
+        </div>
+
+        <div class="photo-card rounded-2xl overflow-hidden bg-slate-800 shadow-lg fade-up delay-3">
+          <div class="h-60 overflow-hidden">
+            <img src="assets/images/key_moments/IMG_6231.PNG" alt="Getaway vehicle — light gray Nissan Rogue SUV" class="w-full h-full object-cover">
+          </div>
+          <div class="px-4 py-3">
+            <p class="text-xs text-yellow-400 font-bold uppercase tracking-wider mb-1">Getaway Vehicle</p>
+            <p class="text-sm text-slate-200 font-medium leading-snug">Light gray Nissan Rogue SUV — driver waited outside entire time</p>
+          </div>
+        </div>
+
+        <div class="photo-card rounded-2xl overflow-hidden bg-slate-800 shadow-lg fade-up delay-1 sm:col-span-2 lg:col-span-1">
+          <div class="h-60 overflow-hidden">
+            <img src="assets/images/key_moments/IMG_6232.PNG" alt="Stolen license plate 9FIDO94" class="w-full h-full object-cover">
+          </div>
+          <div class="px-4 py-3">
+            <p class="text-xs text-yellow-400 font-bold uppercase tracking-wider mb-1">Stolen Plate</p>
+            <p class="text-sm text-slate-200 font-medium leading-snug">License plate <strong class="text-white">9FIDO94</strong> — stolen and fitted to the getaway vehicle</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TV & RADIO COVERAGE -->
+  <section id="coverage" class="bg-slate-50 py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <p class="section-label mb-4 fade-in">News Coverage</p>
+      <h2 class="serif text-5xl mb-12 text-slate-900 fade-up">TV &amp; Radio Coverage</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div class="fade-up delay-1">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">CBS Los Angeles</p>
+          <div class="aspect-video bg-black rounded-2xl overflow-hidden shadow-md">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Uct1MrlM_0U" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="fade-up delay-2">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">NBC Los Angeles</p>
+          <div class="aspect-video bg-black rounded-2xl overflow-hidden shadow-md">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZFjF-NY2sjU" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
 
-      <!-- ABC7 Embed -->
-      <div class="mb-8">
-        <p class="font-semibold text-lg mb-3">ABC7 News</p>
-        <div class="rounded-xl overflow-hidden bg-black flex justify-center">
+      <div class="mb-10 fade-up">
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">ABC7 News</p>
+        <div class="rounded-2xl overflow-hidden bg-black flex justify-center shadow-md">
           <iframe src="https://abc7.com/video/embed?pid=18902214" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
         </div>
       </div>
 
-      <!-- Radio Interview Audio Player -->
-      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-6">
-        <p class="font-semibold text-lg mb-1">Radio Interview</p>
-        <p class="text-sm text-gray-500 mb-4">KNX News Radio — April 20, 2026</p>
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-12 shadow-sm fade-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-radio text-red-600"></i>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900">KNX News Radio — Radio Interview</p>
+            <p class="text-sm text-slate-400">April 20, 2026</p>
+          </div>
+        </div>
         <audio controls class="w-full" src="Desktop 2026.04.20 - 02.42.18.03.mp3">
           Your browser does not support the audio element.
         </audio>
       </div>
 
-      <!-- News Articles -->
-      <h3 class="font-semibold text-xl mb-4 mt-2">News Articles</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <p class="section-label mb-6 fade-in">News Articles</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
         <a href="https://abc7.com/post/burger-basket-monrovia-temporarily-closes-thieves-target-owners-home-steal-140000-life-savings/18906915/"
            target="_blank" rel="noopener"
-           class="flex items-center gap-4 bg-gray-50 border border-gray-200 rounded-2xl p-5 hover:border-red-400 transition-colors">
-          <i class="fa-solid fa-newspaper text-2xl text-red-600"></i>
-          <div>
-            <p class="font-semibold">ABC7 News</p>
-            <p class="text-sm text-gray-500">Burger Basket temporarily closes after thieves steal $140K in life savings</p>
+           class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 hover:border-red-300 hover:shadow-md transition-all group fade-up delay-1">
+          <i class="fa-solid fa-newspaper text-xl text-red-500 mt-0.5 flex-shrink-0"></i>
+          <div class="min-w-0">
+            <p class="font-semibold text-slate-900 group-hover:text-red-700 transition-colors text-sm">ABC7 News</p>
+            <p class="text-xs text-slate-400 mt-0.5 leading-snug">Burger Basket temporarily closes after thieves steal $140K in life savings</p>
           </div>
-          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-gray-400 flex-shrink-0"></i>
+          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-slate-300 flex-shrink-0 mt-0.5 text-xs"></i>
         </a>
 
         <a href="https://www.cbsnews.com/losangeles/news/burger-basket-monrovia-life-savings-stolen/"
            target="_blank" rel="noopener"
-           class="flex items-center gap-4 bg-gray-50 border border-gray-200 rounded-2xl p-5 hover:border-red-400 transition-colors">
-          <i class="fa-solid fa-newspaper text-2xl text-red-600"></i>
-          <div>
-            <p class="font-semibold">CBS News Los Angeles</p>
-            <p class="text-sm text-gray-500">Burger Basket Monrovia: Life savings stolen</p>
+           class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 hover:border-red-300 hover:shadow-md transition-all group fade-up delay-2">
+          <i class="fa-solid fa-newspaper text-xl text-red-500 mt-0.5 flex-shrink-0"></i>
+          <div class="min-w-0">
+            <p class="font-semibold text-slate-900 group-hover:text-red-700 transition-colors text-sm">CBS News Los Angeles</p>
+            <p class="text-xs text-slate-400 mt-0.5 leading-snug">Burger Basket Monrovia: Life savings stolen</p>
           </div>
-          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-gray-400 flex-shrink-0"></i>
+          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-slate-300 flex-shrink-0 mt-0.5 text-xs"></i>
         </a>
 
         <a href="https://www.nbclosangeles.com/news/local/thieves-accused-of-stealing-140k-monrovia-home-break-in/3877760/"
            target="_blank" rel="noopener"
-           class="flex items-center gap-4 bg-gray-50 border border-gray-200 rounded-2xl p-5 hover:border-red-400 transition-colors">
-          <i class="fa-solid fa-newspaper text-2xl text-red-600"></i>
-          <div>
-            <p class="font-semibold">NBC Los Angeles</p>
-            <p class="text-sm text-gray-500">Thieves accused of stealing $140K in Monrovia home break-in</p>
+           class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 hover:border-red-300 hover:shadow-md transition-all group fade-up delay-3">
+          <i class="fa-solid fa-newspaper text-xl text-red-500 mt-0.5 flex-shrink-0"></i>
+          <div class="min-w-0">
+            <p class="font-semibold text-slate-900 group-hover:text-red-700 transition-colors text-sm">NBC Los Angeles</p>
+            <p class="text-xs text-slate-400 mt-0.5 leading-snug">Thieves accused of stealing $140K in Monrovia home break-in</p>
           </div>
-          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-gray-400 flex-shrink-0"></i>
+          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-slate-300 flex-shrink-0 mt-0.5 text-xs"></i>
         </a>
 
         <a href="https://www.audacy.com/knxnews/news/local/monrovia-restaurant-owners-life-savings-stolen-by-thieves"
            target="_blank" rel="noopener"
-           class="flex items-center gap-4 bg-gray-50 border border-gray-200 rounded-2xl p-5 hover:border-red-400 transition-colors">
-          <i class="fa-solid fa-radio text-2xl text-red-600"></i>
-          <div>
-            <p class="font-semibold">KNX News Radio</p>
-            <p class="text-sm text-gray-500">Monrovia restaurant owners' life savings stolen by thieves</p>
+           class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 hover:border-red-300 hover:shadow-md transition-all group fade-up delay-4">
+          <i class="fa-solid fa-radio text-xl text-red-500 mt-0.5 flex-shrink-0"></i>
+          <div class="min-w-0">
+            <p class="font-semibold text-slate-900 group-hover:text-red-700 transition-colors text-sm">KNX News Radio</p>
+            <p class="text-xs text-slate-400 mt-0.5 leading-snug">Monrovia restaurant owners' life savings stolen by thieves</p>
           </div>
-          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-gray-400 flex-shrink-0"></i>
+          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-slate-300 flex-shrink-0 mt-0.5 text-xs"></i>
         </a>
 
       </div>
@@ -384,140 +669,166 @@ Thank you for standing with them during this difficult time.
   </section>
 
   <!-- INTERESTING OBSERVATIONS -->
-  <section class="bg-gray-100 py-12">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-2">Interesting Observations</h2>
-      <p class="text-gray-600 mb-3">Observations drawn from frame-by-frame analysis of the Ring camera footage and still images. Analysis performed by Claude AI and the community. Contribute to the discussion forum located below, so that more clues can be added.</p>
-      <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl mb-8 text-sm">
-        <strong class="text-amber-800">Note:</strong> These are analytical observations only — not verified conclusions. If you notice something additional in the footage, share it in the <a href="https://github.com/Sittiphat/help-burger-basket/discussions" target="_blank" rel="noopener" class="underline">Community Forum</a> or contact <a href="tel:8144069539" class="underline">Jesse at (814) 406-9539</a> or the Monrovia Police Department.
+  <section id="observations" class="bg-slate-900 py-20">
+    <div class="max-w-2xl mx-auto px-6">
+      <p class="section-label text-red-400 mb-4 fade-in">Frame-by-Frame Analysis</p>
+      <h2 class="serif text-5xl text-white mb-4 fade-up">Interesting Observations</h2>
+      <p class="text-slate-400 mb-5 leading-relaxed fade-up">Drawn from frame-by-frame analysis of Ring camera footage and still images. Analysis by Claude AI and the community. Contribute to the discussion forum below so more clues can be added.</p>
+      <div class="bg-amber-950/50 border border-amber-700/40 p-4 rounded-2xl mb-10 text-sm text-amber-200 flex gap-3 fade-up">
+        <i class="fa-solid fa-triangle-exclamation text-amber-400 flex-shrink-0 mt-0.5"></i>
+        <div>Analytical observations only — not verified conclusions. Share findings in the <a href="https://github.com/Sittiphat/help-burger-basket/discussions" target="_blank" rel="noopener" class="underline">Community Forum</a> or contact <a href="tel:8144069539" class="underline">Jesse at (814) 406-9539</a> or the Monrovia Police Department.</div>
       </div>
-      <ul class="space-y-4">
+      <div class="space-y-4">
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>At least 30 minutes of patient pre-entry surveillance.</strong> Ring footage shows the scout in the white hat outside the bathroom window at 4:54 PM. The group did not enter until after 5:22 PM. This level of patience — over 30 minutes — is not typical of opportunistic crime. The crew waited long enough to be confident the home would stay empty.</p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">At least 30 minutes of patient pre-entry surveillance.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">Ring footage shows the scout at 4:54 PM. The group didn't enter until after 5:22 PM. This level of patience is not typical of opportunistic crime — they waited long enough to be certain the home would stay empty.</p>
+        </div>
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>Coordinated multi-role operation with at least four distinct participants.</strong> Video evidence confirms: (1) a scout in a white hat who surveilled the exterior beforehand, (2) at least two masked perpetrators who ransacked the interior simultaneously, and (3) a dedicated getaway driver who stayed parked in the Nissan Rogue outside the entire time. A mysterious fourth party — a woman — was on speakerphone with two suspects inside. Her role (lookout, coordinator, or other) is unknown.</p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">Coordinated multi-role operation with at least four participants.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">Evidence confirms: (1) a scout in a white hat for exterior surveillance, (2) at least two masked perpetrators ransacking simultaneously, (3) a dedicated getaway driver who never left the Nissan Rogue, and (4) a mysterious woman on speakerphone whose role is unknown.</p>
+        </div>
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>Gloves worn throughout — came prepared to leave no trace.</strong> Interior Ring footage clearly shows at least one perpetrator wearing bright <strong>red gloves</strong> while ransacking the living room. This was a deliberate choice to avoid fingerprint evidence and rules out any improvised or opportunistic crime.</p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">Gloves worn throughout — came prepared to leave no trace.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">Interior Ring footage clearly shows at least one perpetrator wearing bright <strong class="text-white">red gloves</strong> while ransacking the living room. A deliberate choice to avoid fingerprint evidence, ruling out any improvised or opportunistic crime.</p>
+        </div>
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>Stolen license plates sourced before arriving.</strong> The Nissan Rogue was already fitted with stolen plate 9FIDO94 when it arrived on scene. This required a separate, prior criminal act — sourcing a stolen plate — and confirms the burglary was planned well in advance, not impulsive.</p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">Stolen license plates sourced before arriving.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">The Nissan Rogue was already fitted with stolen plate 9FIDO94 on arrival. Sourcing a stolen plate is a separate criminal act requiring prior planning — this was not a spontaneous crime.</p>
+        </div>
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>Camera awareness — hallway camera appears deliberately blocked.</strong> At 5:28 PM, the hallway Ring camera view becomes obstructed. The abrupt angle change suggests a suspect noticed and moved or covered the camera. This shows awareness of Ring cameras, consistent with a crew that has done this before.</p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">Camera awareness — hallway camera appears deliberately blocked.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">At 5:28 PM the hallway Ring camera becomes obstructed. The abrupt angle change suggests a suspect noticed and covered it — consistent with a crew that has done this before.</p>
+        </div>
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>Targeted the room with the most visible valuables</strong> The $140,000 was stored in a lockbox inside the master bedroom, in close proximity to other valuables and jewelry. The burglars’ decision to concentrate their efforts on the room most likely to contain high-value items—rather than indiscriminately ransacking the first space they encountered—along with the speed and efficiency of the search, suggests a level of experience and intent. This pattern is consistent with individuals familiar with residential burglaries. It also raises the possibility that they had prior knowledge of the home’s layout and the occupants’ schedules, indicating deliberate planning. Such knowledge could have been obtained through surveillance or, potentially, through information shared by someone with proximity to the family, such as a neighbor, customer, or acquaintance. Additionally, the home’s close proximity to Burger Basket increases the likelihood that the location may have been observed and specifically targeted in advance. </p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">Targeted the room most likely to contain valuables — suggests experience or prior knowledge.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">The $140,000 was stored in a lockbox inside the master bedroom, near other valuables and jewelry. The burglars concentrated their efforts on this room rather than indiscriminately ransacking — consistent with experienced individuals familiar with residential burglaries. It also raises the possibility of prior knowledge of the home's layout, potentially obtained through surveillance or someone with proximity to the family. The home's close proximity to Burger Basket increases the likelihood it was specifically observed and targeted in advance.</p>
+        </div>
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>Spanish-language audio captured on multiple Ring clips.</strong> Several Ring recordings contain audible Spanish-language speech, likely from the perpetrators. The content of these conversations could contain critical information — meeting points, names, instructions. Community members who speak Spanish are strongly encouraged to listen and transcribe what they hear in the <a href="https://github.com/Sittiphat/help-burger-basket/discussions" target="_blank" rel="noopener" class="underline text-red-700">Community Forum</a>.</p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">Spanish-language audio captured on multiple Ring clips.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">Several recordings contain audible Spanish speech, likely from the perpetrators. Community members who speak Spanish are strongly encouraged to listen and transcribe in the <a href="https://github.com/Sittiphat/help-burger-basket/discussions" target="_blank" rel="noopener" class="underline text-red-400">Community Forum</a>.</p>
+        </div>
 
-        <li class="flex gap-4 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-          <i class="fa-solid fa-magnifying-glass text-red-600 mt-1 text-lg flex-shrink-0"></i>
-          <p class="text-gray-800"><strong>3 Family dogs were present.</strong> At first, they barked at the scout in the white hat and reacted defensively when the two masked men emerged from the bathroom. The intruders attempted to calm the dogs by repeatedly opening the bathroom door and speaking to them in a gentle tone. Winchester, the smaller black dog, showed the strongest defensive reaction, while the white dog, Lucky, barked mostly out of fear. The German Shepherd remained the most composed. Because of this, the burglars physically moved the black and white dogs (Winchester and Lucky) into another room while leaving the German Shepherd (Happy) where he was.</p>
-        </li>
+        <div class="obs-card bg-slate-800/80 rounded-r-2xl rounded-bl-2xl p-5 fade-up">
+          <p class="font-semibold text-white mb-2">Three family dogs present — perpetrators used deliberate de-escalation tactics.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">At first, the dogs barked at the scout and reacted defensively when the two masked men emerged from the bathroom. The intruders attempted to calm them by repeatedly opening the bathroom door and speaking in a gentle tone. Winchester (the smaller black dog) showed the strongest reaction; Lucky (the white dog) barked mostly out of fear; Happy (the German Shepherd) remained the most composed. The perpetrators physically moved Winchester and Lucky into separate rooms while leaving Happy alone.</p>
+        </div>
 
-      </ul>
+      </div>
     </div>
   </section>
 
   <!-- SITUATION UPDATES -->
-  <section class="max-w-4xl mx-auto px-6 py-12">
-    <div class="flex justify-between items-baseline mb-8">
-      <h2 class="text-3xl font-bold">Situation Updates</h2>
-      <p id="last-updated" class="text-sm text-gray-500"></p>
-    </div>
+  <section id="updates" class="bg-white py-20">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <p class="section-label mb-3 fade-in">Latest News</p>
+          <h2 class="serif text-5xl text-slate-900 fade-up">Situation Updates</h2>
+        </div>
+        <p id="last-updated" class="text-xs text-slate-400 text-right pb-1"></p>
+      </div>
 
-    <div class="bg-amber-50 border border-amber-200 p-5 rounded-2xl mb-8 text-sm">
-      <strong class="text-amber-800">Note:</strong>
-      This website will be periodically updated with new information and additional video or photo evidence as it becomes available.
-      All evidence has already been shared with the Monrovia Police Department.
-    </div>
+      <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl mb-12 text-sm text-amber-900 flex gap-3 fade-up">
+        <i class="fa-solid fa-clock text-amber-500 flex-shrink-0 mt-0.5"></i>
+        <div>This website will be periodically updated with new information and additional evidence as it becomes available. All evidence has already been shared with the Monrovia Police Department.</div>
+      </div>
 
-    <div id="updates-container" class="space-y-6">
-      <!-- Updates injected by JavaScript below -->
+      <div class="relative">
+        <div class="timeline-track"></div>
+        <div id="updates-container" class="space-y-6"></div>
+      </div>
     </div>
   </section>
 
   <!-- HOW YOU CAN HELP -->
-  <section class="bg-white py-12">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-8">How You Can Help</h2>
-      <div class="space-y-4 text-lg text-gray-800">
-        <div class="flex gap-4 items-start bg-gray-50 border border-gray-200 rounded-2xl p-5">
-          <i class="fa-solid fa-circle-1 text-red-600 text-xl mt-0.5 flex-shrink-0"></i>
-          <p><strong>Share this website.</strong> The more people who see the footage and photos, the higher the chance someone recognizes a face, a car, or a detail. Share on Facebook, Nextdoor, Instagram, and text it to anyone who lives in or near Monrovia.</p>
+  <section id="help" class="py-20" style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);">
+    <div class="max-w-2xl mx-auto px-6">
+      <p class="section-label text-red-300 mb-4 fade-in">Take Action</p>
+      <h2 class="serif text-5xl text-white mb-12 fade-up">How You Can Help</h2>
+      <div class="space-y-4">
+
+        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 flex gap-5 items-start fade-up delay-1">
+          <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 font-black text-red-700 text-lg serif">1</div>
+          <div>
+            <p class="font-semibold text-white text-lg mb-1">Share this website.</p>
+            <p class="text-red-100 text-sm leading-relaxed">The more people who see the footage and photos, the higher the chance someone recognizes a face, a car, or a detail. Share on Facebook, Nextdoor, Instagram, and text it to anyone who lives in or near Monrovia.</p>
+          </div>
         </div>
-        <div class="flex gap-4 items-start bg-gray-50 border border-gray-200 rounded-2xl p-5">
-          <i class="fa-solid fa-circle-2 text-red-600 text-xl mt-0.5 flex-shrink-0"></i>
-          <p><strong>Donate to their GoFundMe.</strong> Every dollar goes directly toward helping Pan and Watt rebuild after losing $140,000 in life savings and $20,000 in valuables. But please, only donate if you have the means to</p>
+
+        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 flex gap-5 items-start fade-up delay-2">
+          <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 font-black text-red-700 text-lg serif">2</div>
+          <div>
+            <p class="font-semibold text-white text-lg mb-1">Donate to their GoFundMe.</p>
+            <p class="text-red-100 text-sm leading-relaxed">Every dollar goes directly toward helping Pan and Watt rebuild after losing $140,000 in life savings and $20,000 in valuables. Please only donate if you have the means to.</p>
+          </div>
         </div>
-        <div class="flex gap-4 items-start bg-gray-50 border border-gray-200 rounded-2xl p-5">
-          <i class="fa-solid fa-circle-3 text-red-600 text-xl mt-0.5 flex-shrink-0"></i>
-          <p><strong>Call or text Jesse if you have information.</strong> If you recognize anyone in the footage, know the Nissan Rogue, or have any information at all — contact Jesse at <a href="tel:8144069539" class="underline text-red-700 font-semibold">(814) 406-9539</a> or call the Monrovia Police Department directly.</p>
+
+        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 flex gap-5 items-start fade-up delay-3">
+          <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 font-black text-red-700 text-lg serif">3</div>
+          <div>
+            <p class="font-semibold text-white text-lg mb-1">Contact Jesse if you have information.</p>
+            <p class="text-red-100 text-sm leading-relaxed">If you recognize anyone in the footage or know the Nissan Rogue, contact Jesse at <a href="tel:8144069539" class="underline text-white font-semibold">(814) 406-9539</a> or call the Monrovia Police Department directly.</p>
+          </div>
         </div>
-        <div class="flex gap-4 items-start bg-gray-50 border border-gray-200 rounded-2xl p-5">
-          <i class="fa-solid fa-circle-4 text-red-600 text-xl mt-0.5 flex-shrink-0"></i>
-          <p><strong>Support Burger Basket.</strong> Come in and buy a burger! Every visit helps Pan and Watt stay on their feet. And most importantly, they love the community's emotional support. Find them on <a href="https://burgerbasketmonrovia.com/" target="_blank" rel="noopener" class="underline text-red-700">burgerbasketmonrovia.com</a>.</p>
+
+        <div class="bg-white/10 border border-white/20 rounded-2xl p-6 flex gap-5 items-start fade-up delay-4">
+          <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 font-black text-red-700 text-lg serif">4</div>
+          <div>
+            <p class="font-semibold text-white text-lg mb-1">Support Burger Basket.</p>
+            <p class="text-red-100 text-sm leading-relaxed">Come in and buy a burger! Every visit helps Pan and Watt stay on their feet — and most importantly, they love the community's emotional support. Find them at <a href="https://burgerbasketmonrovia.com/" target="_blank" rel="noopener" class="underline text-white font-semibold">burgerbasketmonrovia.com</a>.</p>
+          </div>
         </div>
+
       </div>
-      <a href="https://gofund.me/da3c6b3db"
-         class="block text-center mt-10 bg-green-600 text-white font-bold text-2xl py-6 rounded-2xl hover:bg-green-700 transition-colors">
-        Donate on GoFundMe
+
+      <a href="https://gofund.me/da3c6b3db" target="_blank" rel="noopener"
+         class="donate-pulse fade-up block text-center mt-12 bg-green-500 hover:bg-green-400 text-white font-bold text-2xl py-6 rounded-2xl transition-colors shadow-2xl">
+        <i class="fa-solid fa-heart mr-3"></i>Donate on GoFundMe
       </a>
     </div>
   </section>
 
-  <!-- SOCIAL MEDIA & WEBSITE -->
-  <section class="bg-gray-100 py-12">
+  <!-- SOCIAL MEDIA -->
+  <section class="bg-slate-50 py-14">
     <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-8 text-center">Burger Basket — Follow &amp; Visit</h2>
+      <h2 class="serif text-3xl text-center text-slate-900 mb-10 fade-up">Burger Basket — Follow &amp; Visit</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
         <a href="https://www.instagram.com/theburgerbasket/" target="_blank" rel="noopener"
-           class="flex items-center gap-4 bg-white border border-gray-200 rounded-2xl p-5 hover:border-pink-400 transition-colors">
+           class="flex items-center gap-4 bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md hover:border-pink-300 transition-all group fade-up delay-1">
           <i class="fa-brands fa-instagram text-2xl text-pink-500"></i>
           <div>
-            <p class="font-semibold">Instagram</p>
-            <p class="text-sm text-gray-500">@theburgerbasket</p>
+            <p class="font-semibold text-slate-900">Instagram</p>
+            <p class="text-sm text-slate-400">@theburgerbasket</p>
           </div>
-          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-gray-400"></i>
+          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-slate-300 group-hover:text-pink-400 transition-colors text-xs"></i>
         </a>
 
         <a href="https://www.facebook.com/burgerbasketmonrovia/" target="_blank" rel="noopener"
-           class="flex items-center gap-4 bg-white border border-gray-200 rounded-2xl p-5 hover:border-blue-400 transition-colors">
+           class="flex items-center gap-4 bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md hover:border-blue-300 transition-all group fade-up delay-2">
           <i class="fa-brands fa-facebook text-2xl text-blue-600"></i>
           <div>
-            <p class="font-semibold">Facebook</p>
-            <p class="text-sm text-gray-500">burgerbasketmonrovia</p>
+            <p class="font-semibold text-slate-900">Facebook</p>
+            <p class="text-sm text-slate-400">burgerbasketmonrovia</p>
           </div>
-          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-gray-400"></i>
+          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-slate-300 group-hover:text-blue-400 transition-colors text-xs"></i>
         </a>
 
         <a href="https://burgerbasketmonrovia.com/" target="_blank" rel="noopener"
-           class="flex items-center gap-4 bg-white border border-gray-200 rounded-2xl p-5 hover:border-red-400 transition-colors">
+           class="flex items-center gap-4 bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md hover:border-red-300 transition-all group fade-up delay-3">
           <i class="fa-solid fa-globe text-2xl text-red-600"></i>
           <div>
-            <p class="font-semibold">Official Website</p>
-            <p class="text-sm text-gray-500">burgerbasketmonrovia.com</p>
+            <p class="font-semibold text-slate-900">Official Website</p>
+            <p class="text-sm text-slate-400">burgerbasketmonrovia.com</p>
           </div>
-          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-gray-400"></i>
+          <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-slate-300 group-hover:text-red-400 transition-colors text-xs"></i>
         </a>
 
       </div>
@@ -525,54 +836,57 @@ Thank you for standing with them during this difficult time.
   </section>
 
   <!-- DEVELOPER CREDITS -->
-  <section class="bg-white py-12">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-2xl font-bold mb-2">Built With Love for the Burger Basket Community &#x1F354</h2>
-      <p class="text-gray-500 mb-10 text-base max-w-2xl mx-auto">This website was created by volunteers to help spread awareness and support recovery efforts. The source code is open and available on GitHub. If you know how to code — contributions are welcome.</p>
-      <div class="flex flex-col md:flex-row justify-center gap-14 mb-10">
+  <section class="bg-white py-20">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <p class="section-label mb-4 fade-in">Open Source Project</p>
+      <h2 class="serif text-4xl mb-3 text-slate-900 fade-up">Built With Love for the Narkmanee Family</h2>
+      <p class="text-slate-400 mb-14 leading-relaxed max-w-lg mx-auto fade-up">This website was created by volunteers to help spread awareness and support recovery efforts. The source code is open — if you know how to code, contributions are welcome.</p>
+      <div class="flex flex-col md:flex-row justify-center gap-16 mb-14">
 
-        <div class="flex flex-col items-center gap-3">
-          <img src="assets/images/devs/Jesse.jpeg" alt="Jesse Narkmanee" class="w-36 h-36 rounded-full object-cover shadow-md">
-          <div>
-            <p class="font-bold text-xl">Jesse Narkmanee</p>
-            <p class="text-gray-500 mb-2">Co-developer &amp; site owner</p>
-            <a href="https://github.com/sittiphat" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-black transition-colors">
-              <i class="fa-brands fa-github text-lg"></i> @sittiphat
-            </a>
+        <div class="flex flex-col items-center fade-up delay-1">
+          <div class="w-36 h-36 rounded-full overflow-hidden shadow-xl ring-4 ring-slate-100 mb-5">
+            <img src="assets/images/devs/Jesse.jpeg" alt="Jesse Narkmanee" class="w-full h-full object-cover">
           </div>
+          <p class="font-bold text-xl text-slate-900">Jesse Narkmanee</p>
+          <p class="text-slate-400 text-sm mb-3">Co-developer &amp; site owner</p>
+          <a href="https://github.com/sittiphat" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-full transition-colors">
+            <i class="fa-brands fa-github"></i> @sittiphat
+          </a>
         </div>
 
-        <div class="flex flex-col items-center gap-3">
-          <img src="assets/images/devs/skylar.jpg" alt="Skylar Shi" class="w-36 h-36 rounded-full object-cover shadow-md">
-          <div>
-            <p class="font-bold text-xl">Skylar Shi</p>
-            <p class="text-gray-500 mb-2">Co-developer</p>
-            <a href="https://github.com/skylarshi123" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-black transition-colors">
-              <i class="fa-brands fa-github text-lg"></i> @skylarshi123
-            </a>
+        <div class="flex flex-col items-center fade-up delay-2">
+          <div class="w-36 h-36 rounded-full overflow-hidden shadow-xl ring-4 ring-slate-100 mb-5">
+            <img src="assets/images/devs/skylar.jpg" alt="Skylar Shi" class="w-full h-full object-cover">
           </div>
+          <p class="font-bold text-xl text-slate-900">Skylar Shi</p>
+          <p class="text-slate-400 text-sm mb-3">Co-developer</p>
+          <a href="https://github.com/skylarshi123" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-full transition-colors">
+            <i class="fa-brands fa-github"></i> @skylarshi123
+          </a>
         </div>
 
       </div>
       <a href="https://github.com/Sittiphat/help-burger-basket" target="_blank" rel="noopener"
-         class="inline-flex items-center gap-3 bg-gray-900 text-white font-semibold px-7 py-3 rounded-full text-base hover:bg-gray-700 transition-colors">
-        <i class="fa-brands fa-github text-xl"></i>
+         class="fade-up inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-700 text-white font-bold px-8 py-3 rounded-full transition-colors shadow-lg">
+        <i class="fa-brands fa-github text-lg"></i>
         Contribute on GitHub
       </a>
     </div>
   </section>
 
-  <!-- COMMUNITY FORUM / GITHUB DISCUSSIONS -->
-  <section class="bg-gray-900 text-white py-12">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <i class="fa-brands fa-github text-5xl mb-4 text-gray-300"></i>
-      <h2 class="text-3xl font-bold mb-3">Community Forum</h2>
-      <p class="text-gray-300 text-lg mb-2 max-w-2xl mx-auto">Have you spotted something in the footage? Can you help transcribe the Spanish audio? Do you recognize the Nissan Rogue, the mysterious woman talking, or the scout in the white hat?</p>
-      <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Join the conversation on GitHub Discussions — no coding required, just a free GitHub account. Every observation matters.</p>
+  <!-- COMMUNITY FORUM -->
+  <section style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);" class="py-20">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 fade-up">
+        <i class="fa-brands fa-github text-3xl text-white"></i>
+      </div>
+      <h2 class="serif text-5xl text-white mb-5 fade-up">Community Forum</h2>
+      <p class="text-slate-300 text-lg mb-2 max-w-lg mx-auto leading-relaxed fade-up">Have you spotted something in the footage? Can you help transcribe the Spanish audio? Do you recognize the Nissan Rogue, the mysterious woman on speakerphone, or the scout in the white hat?</p>
+      <p class="text-slate-500 mb-10 max-w-lg mx-auto text-sm fade-up">Join the conversation on GitHub Discussions — no coding required, just a free GitHub account. Every observation matters.</p>
       <a href="https://github.com/Sittiphat/help-burger-basket/discussions" target="_blank" rel="noopener"
-         class="inline-flex items-center gap-3 bg-white text-gray-900 font-bold px-8 py-4 rounded-full text-lg hover:bg-gray-200 transition-colors">
+         class="fade-up inline-flex items-center gap-3 bg-white hover:bg-slate-100 text-slate-900 font-bold px-10 py-4 rounded-full text-lg transition-colors shadow-2xl">
         <i class="fa-brands fa-github text-xl"></i>
         Open Community Forum
       </a>
@@ -580,16 +894,40 @@ Thank you for standing with them during this difficult time.
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-gray-950 text-white py-10 text-center">
-    <p class="text-lg">Contact Jesse: <a href="tel:8144069539" class="underline">(814) 406-9539</a></p>
-    <p class="mt-4 text-xs max-w-md mx-auto text-gray-400">
-      Disclaimer: This website shares public video evidence from Pan and Watt's burglary incident.
-      The individuals shown are persons of interest. Please contact Monrovia Police Department with any information.
+  <footer class="bg-slate-950 text-white py-12 text-center">
+    <p class="text-slate-300 text-sm">Contact Jesse: <a href="tel:8144069539" class="text-white font-semibold underline">(814) 406-9539</a></p>
+    <p class="mt-4 text-xs max-w-sm mx-auto text-slate-600 leading-relaxed">
+      Disclaimer: This website shares public video evidence from Pan and Watt's burglary incident. The individuals shown are persons of interest. Please contact Monrovia Police Department with any information.
     </p>
-    <p class="mt-6 text-xs text-gray-500">© The Burger Basket LLC • Updated periodically</p>
+    <p class="mt-6 text-xs text-slate-700">© The Burger Basket LLC &nbsp;·&nbsp; Updated periodically</p>
   </footer>
 
   <script>
+    // Sticky nav shadow
+    window.addEventListener('scroll', () => {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // Hero entrance — fire after a short delay
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.hero-text, .hero-stat').forEach(el => el.classList.add('visible'));
+      }, 80);
+    });
+
+    // Scroll animations via IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
+
+    // Updates
     const updates = [
       {
         date: "April 20, 2026",
@@ -626,26 +964,27 @@ Thank you for standing with them during this difficult time.
     function renderUpdates() {
       const container = document.getElementById('updates-container');
       container.innerHTML = '';
-      updates.forEach(update => {
+      updates.forEach((update, i) => {
         const div = document.createElement('div');
-        div.className = 'update-card bg-white border border-gray-200 rounded-2xl p-6 shadow-sm';
+        div.className = 'timeline-item fade-up';
         div.innerHTML = `
-          <div class="flex items-center gap-3 text-sm text-gray-500 mb-3">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span>${update.date} &bull; ${update.time}</span>
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+              <i class="fa-solid fa-calendar-days text-red-400"></i>
+              <span>${update.date} &bull; ${update.time}</span>
+            </div>
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">${update.title}</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">${update.content}</p>
           </div>
-          <h3 class="font-semibold text-xl mb-2">${update.title}</h3>
-          <p class="text-gray-700 leading-relaxed">${update.content}</p>
         `;
         container.appendChild(div);
+        observer.observe(div);
       });
     }
 
     function showLastUpdated() {
       if (updates.length > 0) {
-        const newest = updates[0];
-        document.getElementById('last-updated').textContent =
-          `Last updated: ${newest.date} at ${newest.time}`;
+        document.getElementById('last-updated').textContent = `Updated ${updates[0].date}`;
       }
     }
 
