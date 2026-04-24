@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-serif: var(--font-dm-serif), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body { font-family: var(--font-inter), system-ui, sans-serif; }
+
+.hero-bg {
+  background: radial-gradient(ellipse at 50% -10%, #7f1d1d 0%, #0f172a 60%);
+}
+
+.video-header {
+  background: linear-gradient(to right, #0f172a, #1e293b);
+}
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ef4444;
+  display: block;
+}
+
+.photo-card { transition: transform 0.2s ease; }
+.photo-card:hover { transform: translateY(-3px); }
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.65s ease;
+}
+.fade-up.visible,
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; }
+.delay-6 { transition-delay: 0.48s; }
+.delay-7 { transition-delay: 0.56s; }
+
+.update-card { transition: all 0.2s ease; }
+.update-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.nav-link { transition: color 0.15s ease; }
+.nav-link:hover { color: #fca5a5; }
