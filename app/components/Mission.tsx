@@ -12,7 +12,7 @@ const items = [
   {
     icon: "fa-solid fa-shield-halved",
     title: "Protect Future Victims",
-    body: "This was a coordinated, professional operation. Documenting their methods publicly may help other families recognize and prevent the same tactics. And when we catch them, they will not be able to hurt another family ever again.",
+    body: "This was a coordinated, professional operation. Documenting their methods publicly may help other families recognize and prevent the same tactics. When they are caught, they will not be able to hurt another family ever again.",
   },
 ];
 

@@ -20,14 +20,14 @@ const updates: Update[] = [
     time: "10:00 AM PDT",
     title: "Website Launched",
     content:
-      "The support website is now live with video evidence, perpetrator photos, and the full story. Still work in progress but the site will be updated shortly, so stay tuned. Please share widely — I do not want these individuals to hurt another family again.",
+      "The support website is now live with video evidence, perpetrator photos, and the full story. The site is still a work in progress and will be updated regularly — please check back. Share it widely; we do not want these individuals to hurt another family.",
   },
   {
     date: "April 18, 2026",
     time: "1:00 PM PDT",
     title: "Burger Basket Looking for New Trainees",
     content:
-      "In the absence of my father, my mom and Burger Basket are currently in the process of hiring and training new staff. Text (814) 406-9539 if you are interested in joining the team!",
+      "In my father's absence, my mother and the team at Burger Basket are actively hiring and training new staff. Text (814) 406-9539 if you are interested in joining.",
   },
   {
     date: "April 18, 2026",
