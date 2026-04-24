@@ -7,6 +7,7 @@ import Evidence from "./components/Evidence";
 import Coverage from "./components/Coverage";
 import Observations from "./components/Observations";
 import Updates from "./components/Updates";
+import Comments from "./components/Comments";
 import Help from "./components/Help";
 import Social from "./components/Social";
 import DevCredits from "./components/DevCredits";
@@ -27,6 +28,7 @@ export default function Home() {
       <Coverage />
       <Observations />
       <Updates />
+      <Comments />
       <Help />
       <Social />
       <DevCredits />
