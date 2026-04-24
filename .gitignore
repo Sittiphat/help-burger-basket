@@ -16,3 +16,17 @@ _site/
 # counterproductive to check this file into the repository.
 # Details at https://github.com/github/pages-gem/issues/768
 Gemfile.lock
+
+# macOS metadata files
+.DS_Store
+**/.DS_Store
+
+# Next.js
+.next/
+out/
+node_modules/
+npm-debug.log*
+.env
+.env.local
+.env*.local
+next-env.d.ts
