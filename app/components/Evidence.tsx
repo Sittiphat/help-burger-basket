@@ -37,7 +37,7 @@ const videos = [
     badge: "Scout",
     badgeClass: "bg-red-900/60 text-red-300",
     src: "/assets/videos/evidence/RingVideo_20260327_013048.mp4",
-    desc: "The camera picks up a new person walking by — this could possibly just be a harmless neighbor. The crew has been surveilling for nearly 20 minutes.",
+    desc: "An individual is captured walking past the property — possibly a harmless neighbor. The crew has now been surveilling for nearly 20 minutes.",
   },
   {
     time: "5:15 PM",
@@ -45,7 +45,7 @@ const videos = [
     badge: "Spanish Audio",
     badgeClass: "bg-blue-900/60 text-blue-300",
     src: "/assets/videos/evidence/RingVideo_20260327_013100.mp4",
-    desc: "Continued exterior surveillance — this could possibly just be a harmless neighbor. Spanish audio is clearly audible in this clip.",
+    desc: "Continued exterior surveillance — to any passerby, this individual would appear to be a harmless neighbor. Spanish audio is clearly audible in this clip.",
   },
   {
     time: "5:22 PM",
@@ -61,7 +61,7 @@ const videos = [
     badge: "Interior",
     badgeClass: "bg-red-900/60 text-red-300",
     src: "/assets/videos/evidence/RingVideo_20260327_011303.mp4",
-    desc: "Two masked burglars enter inside the house for the first time. Distressed and confused, the dogs bark — and the perpetrators use de-escalation tactics, talking sweetly to them and repeatedly opening and closing the door.",
+    desc: "Two masked burglars enter the house for the first time. Visibly distressed, the dogs bark — and the perpetrators use de-escalation tactics, speaking softly to them and repeatedly opening and closing the door.",
   },
   {
     time: "5:28 PM",

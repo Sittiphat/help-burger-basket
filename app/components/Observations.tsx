@@ -21,7 +21,7 @@ const observations = [
   },
   {
     title: "Targeted the room with the most visible valuables.",
-    body: "The $140,000 was stored in a lockbox inside the master bedroom, in close proximity to other valuables and jewelry. The burglars' decision to concentrate their efforts on the room most likely to contain high-value items — rather than indiscriminately ransacking the first space — along with the speed and efficiency of their search, suggests experience and intent. This raises the possibility that they had prior knowledge of the home's layout, potentially through surveillance or someone with proximity to the family. The home's close proximity to Burger Basket increases the likelihood that the location was specifically targeted in advance.",
+    body: "The $140,000 was stored in a lockbox inside the master bedroom, alongside other valuables and jewelry. The burglars' decision to concentrate their efforts on the room most likely to contain high-value items — rather than indiscriminately ransacking the first space they encountered — along with the speed and efficiency of their search, points to experience and deliberate intent. This raises the possibility that they had prior knowledge of the home's layout, potentially through prior surveillance or through someone acquainted with the family. The home's close proximity to Burger Basket further increases the likelihood that the property was specifically targeted in advance.",
   },
   {
     title: "Spanish-language audio captured on multiple Ring clips.",
@@ -29,8 +29,8 @@ const observations = [
     forumLink: true,
   },
   {
-    title: "3 family dogs were present.",
-    body: "At first, they barked at the scout and reacted defensively when the two masked men emerged from the bathroom. The intruders attempted to calm the dogs by repeatedly opening the door and speaking to them in a gentle tone. Winchester (the smaller black dog) showed the strongest defensive reaction, while Lucky (the white Husky) barked mostly out of fear. Happy (the German Shepherd) remained the most composed. Because of this, the burglars physically moved Winchester and Lucky into another room while leaving Happy where he was.",
+    title: "Three family dogs were present.",
+    body: "At first, they barked at the scout and reacted defensively when the two masked men emerged from the bathroom. The intruders attempted to calm the dogs by repeatedly opening the door and speaking to them in a gentle tone. Winchester (the smaller black dog) showed the strongest defensive reaction, while Lucky (the white Husky) barked mostly out of fear. Happy (the German Shepherd) remained the most composed. As a result, the burglars moved Winchester and Lucky into a separate room, leaving Happy where he was.",
   },
 ];
 
@@ -48,10 +48,10 @@ export default function Observations() {
           Interesting Observations
         </h2>
         <p className="text-slate-400 mb-4 fade-up">
-          Observations drawn from frame-by-frame analysis of the Ring camera
-          footage and still images. Analysis performed by Claude AI and the
-          community. Contribute to the discussion forum below so that more clues
-          can be added.
+          Observations drawn from frame-by-frame analysis of Ring camera footage
+          and still images. Analysis performed by Claude AI and the community.
+          Contribute to the discussion forum below — your observations may help
+          identify additional clues.
         </p>
         <div className="bg-amber-950/60 border border-amber-800/50 p-4 rounded-2xl mb-10 text-sm fade-up">
           <strong className="text-amber-400">Note:</strong>
