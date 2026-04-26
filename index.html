@@ -821,7 +821,7 @@
   <!-- SHARE MODAL -->
   <div id="share-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden" onclick="if(event.target===this)closeShareModal()">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-    <div class="share-modal-card relative bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 z-10">
+    <div class="share-modal-card relative bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 z-10 overflow-y-auto max-h-[90vh]">
       <button onclick="closeShareModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors">
         <i class="fa-solid fa-xmark text-xl"></i>
       </button>
@@ -837,6 +837,10 @@
           <i class="fa-brands fa-facebook text-xl w-5 text-center"></i>
           <span>Share on Facebook</span>
         </button>
+        <button onclick="shareToMessenger()" class="flex items-center gap-4 w-full bg-[#006AFF] hover:bg-[#0057d4] text-white font-semibold px-5 py-3.5 rounded-2xl transition-colors">
+          <i class="fa-brands fa-facebook-messenger text-xl w-5 text-center"></i>
+          <span>Share on Messenger</span>
+        </button>
         <button onclick="shareToX()" class="flex items-center gap-4 w-full bg-slate-900 hover:bg-slate-700 text-white font-semibold px-5 py-3.5 rounded-2xl transition-colors">
           <i class="fa-brands fa-x-twitter text-xl w-5 text-center"></i>
           <span>Share on X</span>
@@ -845,6 +849,26 @@
           <i class="fa-brands fa-whatsapp text-xl w-5 text-center"></i>
           <span>Share on WhatsApp</span>
         </button>
+        <button onclick="shareToLinkedIn()" class="flex items-center gap-4 w-full bg-[#0A66C2] hover:bg-[#094d9b] text-white font-semibold px-5 py-3.5 rounded-2xl transition-colors">
+          <i class="fa-brands fa-linkedin text-xl w-5 text-center"></i>
+          <span>Share on LinkedIn</span>
+        </button>
+        <button onclick="shareToThreads()" class="flex items-center gap-4 w-full bg-[#101010] hover:bg-[#2a2a2a] text-white font-semibold px-5 py-3.5 rounded-2xl transition-colors">
+          <i class="fa-brands fa-threads text-xl w-5 text-center"></i>
+          <span>Share on Threads</span>
+        </button>
+        <button onclick="shareToReddit()" class="flex items-center gap-4 w-full bg-[#FF4500] hover:bg-[#e63d00] text-white font-semibold px-5 py-3.5 rounded-2xl transition-colors">
+          <i class="fa-brands fa-reddit text-xl w-5 text-center"></i>
+          <span>Share on Reddit</span>
+        </button>
+        <button id="nextdoor-btn" onclick="shareToNextdoor()" class="flex items-center gap-4 w-full bg-[#8AC04A] hover:bg-[#77a83a] text-white font-semibold px-5 py-3.5 rounded-2xl transition-colors">
+          <i class="fa-solid fa-house-chimney text-xl w-5 text-center"></i>
+          <span id="nextdoor-label">Share on Nextdoor</span>
+        </button>
+        <a href="mailto:?subject=Help%20Identify%20the%20Burger%20Basket%20Burglars&body=A%20Thai%20immigrant%20family%20had%20%24160%2C000%20stolen%20from%20their%20home%20in%20Monrovia%2C%20CA%20on%20March%2026%2C%202026.%20Please%20share%20this%20page%20%E2%80%94%20every%20share%20helps%20bring%20them%20to%20justice.%0A%0Ahttps%3A%2F%2Fwww.helpburgerbasket.com" class="flex items-center gap-4 w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold px-5 py-3.5 rounded-2xl transition-colors">
+          <i class="fa-solid fa-envelope text-xl w-5 text-center"></i>
+          <span>Share via Email</span>
+        </a>
         <button id="copy-link-btn" onclick="copyLink()" class="flex items-center gap-4 w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold px-5 py-3.5 rounded-2xl transition-colors">
           <i id="copy-icon" class="fa-solid fa-link text-lg w-5 text-center text-slate-500"></i>
           <span id="copy-label">Copy Link</span>
@@ -950,6 +974,31 @@
 
     function shareToWhatsApp() {
       window.open('https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL), '_blank');
+    }
+
+    function shareToMessenger() {
+      window.open('https://www.facebook.com/dialog/send?link=' + encodeURIComponent(SHARE_URL) + '&app_id=291494419107&redirect_uri=' + encodeURIComponent(SHARE_URL), '_blank', 'width=600,height=500');
+    }
+
+    function shareToNextdoor() {
+      navigator.clipboard.writeText(SHARE_URL).then(() => {
+        const label = document.getElementById('nextdoor-label');
+        label.textContent = 'Link copied — paste in Nextdoor!';
+        window.open('https://nextdoor.com', '_blank');
+        setTimeout(() => { label.textContent = 'Share on Nextdoor'; }, 3000);
+      });
+    }
+
+    function shareToLinkedIn() {
+      window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(SHARE_URL), '_blank', 'width=600,height=500');
+    }
+
+    function shareToThreads() {
+      window.open('https://www.threads.net/intent/post?text=' + encodeURIComponent(SHARE_TEXT + '\n\n' + SHARE_URL), '_blank', 'width=600,height=500');
+    }
+
+    function shareToReddit() {
+      window.open('https://reddit.com/submit?url=' + encodeURIComponent(SHARE_URL) + '&title=' + encodeURIComponent('Help Identify the Burger Basket Burglars — $160,000 Stolen from Thai Immigrant Family in Monrovia, CA'), '_blank', 'width=800,height=600');
     }
 
     function copyLink() {
